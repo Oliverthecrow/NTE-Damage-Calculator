@@ -1,5 +1,7 @@
 For using the website go to this link: https://oliverthecrow.github.io/NTE-Damage-Calculator/
 
+if you would prefer a spreadsheet instead, you can make a duplicate of this: https://docs.google.com/spreadsheets/d/1t9FgjcCN8J-WT5jqCjWMK2ET8mzwCoeV-KEzoItROEU/edit?usp=sharing
+
 For more information on use, or if you want to talk about meta or calculate damage and teams you are welcome to join the TC discord: https://discord.gg/CdD29q7D5
 
 MV based:
@@ -13,4 +15,4 @@ which ones dont unfortunately. besides that you will have to know each of the ch
 Reaction based:
 Reaction Ownership will automatically be handled for you, just remember for enemy
 res reduction to only account for res reduction that applies to the esper matching
-the owenr, OR mental dmg for nova if applicable. 
+the owner, OR mental dmg for nova if applicable. 
