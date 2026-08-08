@@ -11,4 +11,6 @@ not the character breaking the enemy, but there are things like awakenings, or I
 which ones dont unfortunately. besides that you will have to know each of the characters resistances for any given enemy, and find out the enemy max break.
 
 Reaction based:
-so far not done.
+Reaction Ownership will automatically be handled for you, just remember for enemy
+res reduction to only account for res reduction that applies to the esper matching
+the owenr, OR mental dmg for nova if applicable. 

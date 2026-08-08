@@ -371,9 +371,122 @@
       <h2>Reaction Based Calculations</h2>
       <div class="card-grid">
         <div class="card">
+          <h3>Character 1</h3>
           <div class="field">
-            <label for="ReactionMV">Reaction Ratio:</label>
-            <input type="text" class="format-percent" id="ReactionMV" value="100%" />
+            <label for="RChar1LV">Character Level:</label>
+            <input type="text" class="format-number" id="RChar1LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="R1Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="R1DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="R1Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="R1ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="R1EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="R1EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="R1CI">Cycle Intensity:</label>
+            <input type="text" class="format-number" id="R1CI" value="0">
+          </div>
+          <div class="field">
+            <label for="R1CD">Crit Dmg:</label>
+            <input type="text" class="format-percent" id="R1CD" value="50%">
+          </div>
+          <div class="field">
+            <label for="B1True">True Mult:</label>
+            <input type="text" class="format-percent" id="R1True" value="0%">
+          </div>
+          <div class="field checkbox-field">
+            <label for="Rownership1">Does this char own reaction?</label>
+            <input type="checkbox" id="Rownership1" name="Rownership1" value="no" disabled />
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Character 2</h3>
+          <div class="field">
+            <label for="RChar2LV">Character Level:</label>
+            <input type="text" class="format-number" id="RChar2LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="R2Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="R2DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="R2Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="R2ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="R2EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="R2EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="R2CI">Cycle Intensity:</label>
+            <input type="text" class="format-number" id="R2CI" value="0">
+          </div>
+          <div class="field">
+            <label for="R2CD">Crit Dmg:</label>
+            <input type="text" class="format-percent" id="R2CD" value="50%">
+          </div>
+          <div class="field">
+            <label for="B2True">True Mult:</label>
+            <input type="text" class="format-percent" id="R2True" value="0%">
+          </div>
+          <div class="field checkbox-field">
+            <label for="Rownership2">Does this char own reaction?</label>
+            <input type="checkbox" id="Rownership2" name="Rownership2" value="no" disabled />
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Enemy Info</h3>
+          <div class="field">
+            <label for="BEnemyLevel">Enemy Level:</label>
+            <input type="text" class="format-number" id="REnemyLevel" value="90">
+          </div>
+          <div class="field">
+            <label for="BEnemyDefReduction">Enemy Def Reduction:</label>
+            <input type="text" class="format-percent" id="REnemyDefReduction" value="0%">
+          </div>
+          <div class="field">
+            <label for="BEnemyResReduction">Enemy Res Reduction:</label>
+            <input type="text" class="format-percent" id="REnemyResReduction" value="0%">
+          </div>
+          <p>use the total res reduction for the esper matching the owner, keep in
+            mind nova is always mental damage.</p>
+          <div class="field checkbox-field">
+            <label for="RinTrain">In train?</label>
+            <input type="checkbox" id="RinTrain" name="RinTrain" value="yes" />
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Reaction Results</h3>
+          <div class="field">
+            <label>Scorch Tick (non crit) Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Rscorch-result">0</span></span>
+          </div>
+          <div class="field">
+            <label>Scorch Tick (crit) Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Rscorch2-result">0</span></span>
+          </div>
+
+          <div class="field">
+            <label>Vita Pistil Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Rblossom-result">0</span></span>
+          </div>
+          <div class="field">
+            <label>Nova Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Rnova-result">0</span></span>
+          </div>
+
+          <div class="field">
+            <button id="Rcalculate-btn">Calculate</button>
+
           </div>
         </div>
       </div>
