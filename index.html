@@ -1,0 +1,387 @@
+<!-- AI came up with structure for cards and fields, lots of stuff is done by hand though -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NTE Damage Simple Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+
+<body>
+  <main>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <h1>NTE Calculation Tool</h1>
+      <button class="nav-btn active" data-calc="calc-mv">MV based</button>
+      <button class="nav-btn" data-calc="calc-break">Break</button>
+      <button class="nav-btn" data-calc="calc-reaction">Reaction</button>
+    </nav>
+
+    <!--MV based calculations-->
+    <section id="calc-mv" class="calc-section active">
+      <h2>MV Based Calculations</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="field">
+            <label for="MV">Damage Ratio:</label>
+            <input type="text" inputmode="decmial" class="format-percent" id="MV" value="100%" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label for="BaseAtk">Base Attack:</label>
+            <input type="text" class="format-number" id="BaseAtk" value="1000" />
+          </div>
+          <div class="field">
+            <label for="Atk%">Attack%:</label>
+            <input type="text" class="format-percent" id="Atk%" value="37.5%" />
+          </div>
+          <div class="field">
+            <label for="FlatAtk">Flat Attack:</label>
+            <input type="text" class="format-number" id="FlatAtk" value="440" />
+          </div>
+          <div class="field">
+            <label for="TotalAttack">Total Attack:</label>
+            <span class="TotalAttackDisplay"><span id="TotalAttack">0</span></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label for="Dmg%">Damage Percent:</label>
+            <input type="text" class="format-percent" id="Dmg%" value="30%" />
+          </div>
+          <div class="field">
+            <label for="DmgT">Damage True Mult Percent:</label>
+            <input type="text" class="format-percent" id="DmgT" value="0%" />
+          </div>
+          <div class="field">
+            <label for="TotalDamage%">Damage Mult:</label>
+            <span class="TotalAttackDisplay"><span id="TotalDamage%">0</span></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label for="CharLV">Character Level:</label>
+            <input type="text" class="format-number" id="CharLV" value="80" />
+          </div>
+          <div class="field">
+            <label for="EneLV">Enemy Level:</label>
+            <input type="text" class="format-number" id="EneLV" value="90" />
+          </div>
+          <div class="field">
+            <label for="DefI">Defense Ignore:</label>
+            <input type="text" class="format-percent" id="DefI" value="0%" />
+          </div>
+          <div class="field">
+            <label for="DefR">Defense Reduction:</label>
+            <input type="text" class="format-percent" id="DefR" value="0%" />
+          </div>
+          <div class="field checkbox-field">
+            <label for="inTrain">In train?</label>
+            <input type="checkbox" id="inTrain" name="inTrain" value="yes" />
+          </div>
+          <div class="field">
+            <label for="TotalDefense">Defense Mult:</label>
+            <span class="TotalAttackDisplay"><span id="TotalDefense">0</span></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label for="EneRes">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="EneRes" value="30%" />
+          </div>
+          <div class="field">
+            <label for="Resi">Resistance Ignore:</label>
+            <input type="text" class="format-percent" id="ResI" value="0%" />
+          </div>
+          <div class="field">
+            <label for="ResR">Resistance Reduction:</label>
+            <input type="text" class="format-percent" id="ResR" value="0%" />
+          </div>
+          <div class="field">
+            <label for="ResMult">Resistance Mult:</label>
+            <span class="TotalAttackDisplay"><span id="ResMult">0</span></span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <label for="TrueMult">True Mult:</label>
+            <input type="text" class="format-percent" id="TrueMult" value="0%" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="field">
+            <button id="calculate-btn">Calculate</button>
+            <h1>Result: <span id="output-result">0</span></h1>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Break based calculations -->
+    <section id="calc-break" class="calc-section">
+      <h2>Break Based Calculations</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Enemy Info</h3>
+          <div class="field">
+            <label for="BEnemyLevel">Enemy Level:</label>
+            <input type="text" class="format-number" id="BEnemyLevel" value="90">
+          </div>
+          <div class="field">
+            <label for="EnemyMaxBreak">Enemy Max Break:</label>
+            <input type="text" class="format-number" id="EnemyMaxBreak" value="50">
+          </div>
+          <div class="field">
+            <label for="BEnemyDefReduction">Enemy Def Reduction:</label>
+            <input type="text" class="format-percent" id="BEnemyDefReduction" value="0%">
+          </div>
+          <div class="field">
+            <label for="BEnemyResReduction">Enemy Res Reduction:</label>
+            <input type="text" class="format-percent" id="BEnemyResReduction" value="0%">
+          </div>
+          <p>exclusively for uni res reduction, just use res ignore for specific espers</p>
+          <div class="field checkbox-field">
+            <label for="BinTrain">In train?</label>
+            <input type="checkbox" id="BinTrain" name="BinTrain" value="yes" />
+          </div>
+        </div>
+        <div class="card">
+          <h3>Character 1</h3>
+          <div class="field">
+            <label for="BChar1LV">Character Level:</label>
+            <input type="text" class="format-number" id="BChar1LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="B1Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="B1DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B1Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="B1ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B1EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="B1EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="B1EBDC">Extra Break Dmg Contribution:</label>
+            <input type="text" class="format-percent" id="B1EBDC" value="0%">
+          </div>
+          <div class="field">
+            <label for="B1BI">Break Intensity:</label>
+            <input type="text" class="format-number" id="B1BI" value="0">
+          </div>
+          <div class="field">
+            <label for="B1True">True Mult:</label>
+            <input type="text" class="format-percent" id="B1True" value="0%">
+          </div>
+
+        </div>
+        <div class="card">
+          <h3>Character 2</h3>
+          <div class="field">
+            <label for="BChar2LV">Character Level:</label>
+            <input type="text" class="format-number" id="BChar2LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="B2Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="B2DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B2Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="B2ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B2EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="B2EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="B2EBDC">Extra Break Dmg Contribution:</label>
+            <input type="text" class="format-percent" id="B2EBDC" value="0%">
+          </div>
+          <div class="field">
+            <label for="B2BI">Break Intensity:</label>
+            <input type="text" class="format-number" id="B2BI" value="0">
+          </div>
+          <div class="field">
+            <label for="B2True">True Mult:</label>
+            <input type="text" class="format-percent" id="B2True" value="0%">
+          </div>
+        </div>
+        <div class="card">
+          <h3>Character 3</h3>
+          <div class="field">
+            <label for="BChar3LV">Character Level:</label>
+            <input type="text" class="format-number" id="BChar3LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="B3Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="B3DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B3Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="B3ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B3EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="B3EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="B3EBDC">Extra Break Dmg Contribution:</label>
+            <input type="text" class="format-percent" id="B3EBDC" value="0%">
+          </div>
+          <div class="field">
+            <label for="B3BI">Break Intensity:</label>
+            <input type="text" class="format-number" id="B3BI" value="0">
+          </div>
+          <div class="field">
+            <label for="B3True">True Mult:</label>
+            <input type="text" class="format-percent" id="B3True" value="0%">
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Character 4</h3>
+          <div class="field">
+            <label for="BChar4LV">Character Level:</label>
+            <input type="text" class="format-number" id="BChar4LV" value="80" />
+          </div>
+          <div class="field">
+            <label for="B4Def ignore">Def ignore:</label>
+            <input type="text" class="format-percent" id="B4DefIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B4Res ignore">Res ignore:</label>
+            <input type="text" class="format-percent" id="B4ResIgnore" value="0%">
+          </div>
+          <div class="field">
+            <label for="B4EnemyResistance">Enemy Resistance:</label>
+            <input type="text" class="format-percent" id="B4EnemyResistance" value="30%">
+          </div>
+          <div class="field">
+            <label for="B4EBDC">Extra Break Dmg Contribution:</label>
+            <input type="text" class="format-percent" id="B4EBDC" value="0%">
+          </div>
+          <div class="field">
+            <label for="B4BI">Break Intensity:</label>
+            <input type="text" class="format-number" id="B4BI" value="0">
+          </div>
+          <div class="field">
+            <label for="B4True">True Mult:</label>
+            <input type="text" class="format-percent" id="B4True" value="0%">
+          </div>
+        </div>
+        <div class="card">
+          <h3>Which Char Breaks?</h3>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="radio" id="BChar1" name="whoBreaks" value="Char1" />
+              <span>Character 1</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="radio" id="BChar2" name="whoBreaks" value="Char2" />
+              <span>Character 2</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="radio" id="BChar3" name="whoBreaks" value="Char3" />
+              <span>Character 3</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="radio" id="BChar4" name="whoBreaks" value="Char4" />
+              <span>Character 4</span>
+            </label>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Universal Ignore</h3>
+          <div class="field">
+            <label for="B1UniDefIgnore">Char1 Def Ignore:</label>
+            <input type="text" class="format-percent" id="B1UniDefIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B2UniDefIgnore">Char2 Def Ignore:</label>
+            <input type="text" class="format-percent" id="B2UniDefIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B3UniDefIgnore">Char3 Def Ignore:</label>
+            <input type="text" class="format-percent" id="B3UniDefIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B4UniDefIgnore">Char4 Def Ignore:</label>
+            <input type="text" class="format-percent" id="B4UniDefIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B1UniResIgnore">Char1 Res Ignore:</label>
+            <input type="text" class="format-percent" id="B1UniResIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B2UniResIgnore">Char2 Res Ignore:</label>
+            <input type="text" class="format-percent" id="B2UniResIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B3UniResIgnore">Char3 Res Ignore:</label>
+            <input type="text" class="format-percent" id="B3UniResIgnore" value="0%" />
+          </div>
+          <div class="field">
+            <label for="B4UniResIgnore">Char4 Res Ignore:</label>
+            <input type="text" class="format-percent" id="B4UniResIgnore" value="0%" />
+          </div>
+
+        </div>
+        <div class="card">
+          <h3>Break Results</h3>
+          <div class="field">
+            <label>Char 1 Break Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Bchar1-result">0</span></span>
+          </div>
+          <div class="field">
+            <label>Char 2 Break Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Bchar2-result">0</span></span>
+          </div>
+          <div class="field">
+            <label>Char 3 Break Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Bchar3-result">0</span></span>
+          </div>
+          <div class="field">
+            <label>Char 4 Break Dmg:</label>
+            <span class="TotalAttackDisplay"><span id="Bchar4-result">0</span></span>
+          </div>
+          <div class="field">
+            <button id="Bcalculate-btn">Calculate</button>
+            <h1>Total: <span id="Boutput-result">0</span></h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reaction based calculations -->
+    <section id="calc-reaction" class="calc-section">
+      <h2>Reaction Based Calculations</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="field">
+            <label for="ReactionMV">Reaction Ratio:</label>
+            <input type="text" class="format-percent" id="ReactionMV" value="100%" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- External JavaScript File (Loaded at bottom of body so DOM elements exist) -->
+  <script src="script.js"></script>
+</body>
+
+</html>
