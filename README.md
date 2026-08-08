@@ -4,6 +4,10 @@ if you would prefer a spreadsheet instead, you can make a duplicate of this: htt
 
 For more information on use, or if you want to talk about meta or calculate damage and teams you are welcome to join the TC discord: https://discord.gg/CdD29q7D5
 
+This can be used either for matching and getting expected values for testing in game mechanics, or for testing different builds. as you can set a predetermined MV and compare
+output dmg when changing stats. but mainly I made this because I was shown an entirely AI generated guide site for NTE that was so hilariously wrong I wanted to make one that was
+not totally inaccurate. 
+
 MV based:
 this is the most simple one, mainly you just need to know what is DMG% versus true mult, and what is def reduction versus ignore.
 
